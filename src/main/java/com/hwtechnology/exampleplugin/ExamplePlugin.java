@@ -1,4 +1,4 @@
-package com.example.exampleplugin;
+package com.hwtechnology.exampleplugin;
 
 import com.hypixel.hytale.logger.HytaleLogger;
 import com.hypixel.hytale.server.core.plugin.JavaPlugin;
@@ -14,6 +14,6 @@ public class ExamplePlugin extends JavaPlugin {
 
     @Override
     protected void setup() {
-        this.getCommandRegistry().registerCommand(new ExampleCommand(this.getName(), this.getManifest().getVersion().toString()));
+        this.getCommandRegistry().registerCommand(new MainCommand(this.getName(), this.getManifest().getVersion().toString()));
     }
 }

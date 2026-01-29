@@ -1,4 +1,4 @@
-package com.example.exampleplugin;
+package com.hwtechnology.exampleplugin;
 
 import com.hypixel.hytale.protocol.GameMode;
 import com.hypixel.hytale.server.core.Message;
@@ -10,19 +10,20 @@ import javax.annotation.Nonnull;
 /**
  * This is an example command that will simply print the name of the plugin in chat when used.
  */
-public class ExampleCommand extends CommandBase {
-    private final String pluginName;
-    private final String pluginVersion;
+public class MainCommand extends CommandBase {
 
-    public ExampleCommand(String pluginName, String pluginVersion) {
-        super("test", "Prints a test message from the " + pluginName + " plugin.");
+    public MainCommand(String pluginName, String pluginVersion) {
+        super("test", "Prints a help message from the " + pluginName + " plugin.");
+        this.addSubCommand(new VersionCommand(pluginName,pluginVersion));
         this.setPermissionGroup(GameMode.Adventure); // Allows the command to be used by anyone, not just OP
-        this.pluginName = pluginName;
-        this.pluginVersion = pluginVersion;
     }
 
     @Override
     protected void executeSync(@Nonnull CommandContext ctx) {
-        ctx.sendMessage(Message.raw("Hello from the " + pluginName + " v" + pluginVersion + " plugin!"));
+        String message = """
+                Usage (Append --help to any subcommand!)
+                /test
+                  version""";
+        ctx.sendMessage(Message.raw(message));
     }
 }
